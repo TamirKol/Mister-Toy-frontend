@@ -1,9 +1,12 @@
+import { toyService } from "../../services/toy.service.js"
 import { utilService } from "../../services/util.service.js"
 import { useEffect, useRef, useState } from "react"
 
 export function ToyFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+
+    const toyLabels = toyService.getToyLabels()
 
     onSetFilterBy = useRef(utilService.debounce(onSetFilterBy))
 
@@ -43,7 +46,18 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
                 <option value="true">in stock</option>
                 <option value="false">out of stock</option>
             </select>
+            <div className="filter-input-wrapper">
+            <label htmlFor="toys">Labels:</label>
+                    <select multiple value={lables} name="labels" id="labels" onChange={handleChange}>
+                        <option value="">All</option>
+                        <>
+                            {toyLabels.map(label => (
+                                <option key={label} value={label}>{label}</option>
+                            ))}
+                        </>
 
+                    </select>
+            </div>
             {/* <label >
                 Page:
                 <input type="number"

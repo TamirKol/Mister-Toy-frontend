@@ -9,8 +9,12 @@ export const toyService = {
     remove,
     save,
     getEmptyToy,
+    createToy,
+    getToyLabels,
     getDefaultFilter
 }
+const labels = ["Robot", "Doll", "Car","Educational", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set","Battery Powered", "Baby"];
+
 const toysList = [
     {
         "_id": "t101",
@@ -18,7 +22,7 @@ const toysList = [
         "price": 123,
         "labels": ["Doll", "Battery Powered", "Baby"],
         "createdAt": 1631031801011,
-        "inStock": true
+        "inStock": 'true'
       },
       {
         "_id": "t102",
@@ -26,7 +30,7 @@ const toysList = [
         "price": 89.99,
         "labels": ["Toy", "Battery Powered", "Kids"],
         "createdAt": 1632031801011,
-        "inStock": true
+        "inStock": 'true'
       },
       {
         "_id": "t103",
@@ -34,7 +38,7 @@ const toysList = [
         "price": 19.99,
         "labels": ["Toy", "Educational", "Kids"],
         "createdAt": 1633031801011,
-        "inStock": true
+        "inStock": 'true'
       }
     
 ]
@@ -43,31 +47,27 @@ _createToys()
 function query(filterBy={}) {
     return storageService.query(STORAGE_KEY)
      .then(toys => {
-        const toysData = {
-            toyCount: toys.length,
-            doneCount: toys.filter(toy => toy.inStock).length,
-            toysToDisplay: []
-        }
+        let toyToDisplay = [...toys]
 
         if (filterBy.txt) {
             const regExp = new RegExp(filterBy.txt, 'i')
-            toys = toys.filter(toy => regExp.test(toy.name))
+            toyToDisplay = toyToDisplay.filter(toy => regExp.test(toy.name))
         }
         if (filterBy.inStock) {
-            if (filterBy.inStock === 'false') {
-                toys = toys.filter(toy => toy.inStock === false)
+            if (filterBy.inStock === "false") {
+                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === 'false')
             } else {
-                toys = toys.filter(toy => toy.inStock === true)
+                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === 'true')
             }
         }
-        // toys = getSortedToys(toys, sortBy)
-        // if (filterBy.pageIdx != - undefined) {
-        //     const startIdx = filterBy.pageIdx * PAGE_SIZE
-        //     toys = toys.slice(startIdx, PAGE_SIZE + startIdx)
-        // }
-        console.log(toys)
-        toysData.toysToDisplay = toys
-        return toysData.toysToDisplay
+       if(filterBy.labels && filterBy.labels.length >0){
+        toyToDisplay= toyToDisplay.filter(toy =>{
+            return toy.labels.some(label =>filterBy.labels.includes(label))
+        })
+        }
+        console.log(toyToDisplay)
+     
+        return toyToDisplay
     })
 }
 
@@ -102,14 +102,24 @@ function save(toy) {
 function getEmptyToy() {
     return {
         _id: '',
-        name: getRandomToyName(),
-        price: utilService.getRandomIntInclusive(10, 1000),
+        name: '',
+        price:'',
         labels: [],
-        createdAt: Date.now(),
+        createdAt:'',
         inStock: true,
     }
 }
 
+function createToy(){
+    return {
+        _id: '',
+        name: getRandomToyName(),
+        price:utilService.getRandomIntInclusive(10,1000),
+        labels: [],
+        createdAt:Date.now(),
+        inStock: true,
+    }
+}
 
 function getDefaultFilter() {
     return { txt: '', inStock:'' ,labels: ''}
@@ -122,17 +132,20 @@ function _createToys() {
         utilService.saveToStorage(STORAGE_KEY, toys)
     }
 }
-function getRandomToyName() {
-    const toyWords = ["Robot", "Doll", "Car", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set"];
-    
+
+function getToyLabels(){
+    return labels
+}
+
+function getRandomToyName() {    
     // Generate a random number between 1 and 3 to determine the number of words in the toy name.
-    const numberOfWords = Math.floor(Math.random() * 3) + 1;
+    const numberOfWords = Math.floor(Math.random() * 2) + 1;
     
     // Randomly select words to create the toy name.
     const randomToyName = [];
     for (let i = 0; i < numberOfWords; i++) {
-      const randomIndex = Math.floor(Math.random() * toyWords.length);
-      randomToyName.push(toyWords[randomIndex]);
+      const randomIndex = Math.floor(Math.random() * labels.length);
+      randomToyName.push(labels[randomIndex]);
     }
     
     return randomToyName.join(" ");

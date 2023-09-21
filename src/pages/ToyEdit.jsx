@@ -5,18 +5,16 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 export function ToyEdit() {
-
+    
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const navigate = useNavigate()
     const params = useParams()
-    console.log('params:', params)
-
     useEffect(() => {
         if (params.toyId) loadToy()
     }, [])
 
     function loadToy() {
-        toyService.getById(+params.toyId)
+        toyService.getById(params.toyId)
             .then(setToyToEdit)
             .catch(err => {
                 console.log('Had issued in toy edit:', err);
@@ -37,12 +35,11 @@ export function ToyEdit() {
             .then(() => {
                 showSuccessMsg('Toy added!')
                 navigate('/toy')
-        })
+            })
             .catch(err => {
                 showErrorMsg('Cannot save toy', err)
             })
     }
-
     const { name, price, labels, inStock } = toyToEdit
     return (
         <section className="toy-edit">
@@ -63,27 +60,11 @@ export function ToyEdit() {
                     value={price}
                     onChange={handleChange}
                 />
-                <input
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    value={email}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    value={phone}
-                    onChange={handleChange}
-                />
-                <input
-                    type="text"
-                    placeholder="Description"
-                    name="desc"
-                    value={desc}
-                    onChange={handleChange}
-                />
+                <select name="inStock" value={inStock} onChange={handleChange}>
+                    <option value="true">in stock</option>
+                    <option value="false">out of stock</option>
+                </select>
+          
                 <button>Save</button>
                 {/* <button onClick={onAddToy}>Add Toy</button> */}
             </form>

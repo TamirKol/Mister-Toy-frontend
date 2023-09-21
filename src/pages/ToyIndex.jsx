@@ -36,7 +36,7 @@ export function ToyIndex() {
     }
 
     function onAddToy() {
-        const toyToSave = toyService.getEmptyToy()
+        const toyToSave = toyService.createToy()
         saveToy(toyToSave)
             .then(savedToy => {
                 showSuccessMsg(`Toy added (id: ${savedToy._id})`)
@@ -60,11 +60,6 @@ export function ToyIndex() {
             })
     }
 
-    function addToToyt(toy) {
-        console.log(`Adding ${toy.vendor} to Toyt`)
-        dispatch({ type: ADD_TOY_TO_TOYT, toy })
-        showSuccessMsg('Added to Toyt')
-    }
 
     function onSetFilter(filterBy) {
         dispatch({ type: SET_FILTER_BY, filterBy })
@@ -81,7 +76,6 @@ export function ToyIndex() {
                     toys={toys}
                     onRemoveToy={onRemoveToy}
                     onEditToy={onEditToy}
-                    addToToyt={addToToyt}
                 />
                 }
 

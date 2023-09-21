@@ -24,7 +24,7 @@ export default function App() {
                             <Route element={<HomePage />} path="/" />
                             <Route element={< ToyDetails/>} path="/toy/:toyId" />
                             <Route element={< ToyIndex/>} path="/toy" />
-                            <Route element={<ToyEdit />} path="/toy/edit/:todoId" />
+                            <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                         </Routes>
                     </main>
                 <AppFooter />
