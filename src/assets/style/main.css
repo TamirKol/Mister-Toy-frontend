@@ -1,0 +1,19 @@
+/* Setup */
+@import 'setup/vars.css';
+/* @import 'setup/typography.css'; */
+
+/* Base */
+@import 'base/base.css';
+@import 'base/helpers.css';
+@import 'base/layout.css';
+@import 'base/forms.css';
+
+/* Components */
+@import 'cmps/AppHeader.css';
+@import 'cmps/pages/HomePage.css';
+/* @import 'cmps/UserMsg.css'; */
+
+@import 'cmps//toy/ToyFilter.css';
+ @import 'cmps//toy/ToyList.css';
+@import 'cmps/toy/ToyPreview.css'; 
+
