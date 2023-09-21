@@ -38,7 +38,7 @@ const toysList = [
         "price": 19.99,
         "labels": ["Toy", "Educational", "Kids"],
         "createdAt": 1633031801011,
-        "inStock": 'true'
+        "inStock": true
       }
     
 ]
@@ -54,10 +54,11 @@ function query(filterBy={}) {
             toyToDisplay = toyToDisplay.filter(toy => regExp.test(toy.name))
         }
         if (filterBy.inStock) {
+            // const inStock = filterBy.instock === 'true' ? true : false
             if (filterBy.inStock === "false") {
-                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === 'false')
+                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === false)
             } else {
-                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === 'true')
+                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === true)
             }
         }
        if(filterBy.labels && filterBy.labels.length >0){
