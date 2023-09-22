@@ -1,6 +1,8 @@
 import { storageService } from "./async-storage.service.js"
 import { utilService } from "./util.service.js"
+import { httpService } from '../services/http.service.js'
 
+const BASE_URL = 'toy/'
 const STORAGE_KEY = 'toyDB'
 
 export const toyService = {
@@ -45,31 +47,32 @@ const toysList = [
 _createToys()
 
 function query(filterBy={}) {
-    return storageService.query(STORAGE_KEY)
-     .then(toys => {
-        let toyToDisplay = [...toys]
+    return httpService.get(BASE_URL, filterBy)
+    // return storageService.query(STORAGE_KEY)
+    //  .then(toys => {
+    //     let toyToDisplay = [...toys]
 
-        if (filterBy.txt) {
-            const regExp = new RegExp(filterBy.txt, 'i')
-            toyToDisplay = toyToDisplay.filter(toy => regExp.test(toy.name))
-        }
-        if (filterBy.inStock) {
-            // const inStock = filterBy.instock === 'true' ? true : false
-            if (filterBy.inStock === "false") {
-                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === false)
-            } else {
-                toyToDisplay = toyToDisplay.filter(toy => toy.inStock === true)
-            }
-        }
-       if(filterBy.labels && filterBy.labels.length >0){
-        toyToDisplay= toyToDisplay.filter(toy =>{
-            return toy.labels.some(label =>filterBy.labels.includes(label))
-        })
-        }
-        console.log(toyToDisplay)
+    //     if (filterBy.txt) {
+    //         const regExp = new RegExp(filterBy.txt, 'i')
+    //         toyToDisplay = toyToDisplay.filter(toy => regExp.test(toy.name))
+    //     }
+    //     if (filterBy.inStock) {
+    //         // const inStock = filterBy.instock === 'true' ? true : false
+    //         if (filterBy.inStock === "false") {
+    //             toyToDisplay = toyToDisplay.filter(toy => toy.inStock === false)
+    //         } else {
+    //             toyToDisplay = toyToDisplay.filter(toy => toy.inStock === true)
+    //         }
+    //     }
+    //    if(filterBy.labels && filterBy.labels.length >0){
+    //     toyToDisplay= toyToDisplay.filter(toy =>{
+    //         return toy.labels.some(label =>filterBy.labels.includes(label))
+    //     })
+    //     }
+    //     console.log(toyToDisplay)
      
-        return toyToDisplay
-    })
+    //     return toyToDisplay
+    // })
 }
 
 function getSortedToys(toysToDisplay, sortBy) {
@@ -88,17 +91,27 @@ function getSortedToys(toysToDisplay, sortBy) {
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
+    return httpService.get(BASE_URL + toyId)
+    // return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
-    return storageService.remove(STORAGE_KEY, toyId)
+    return httpService.delete(BASE_URL + toyId)
+    // return storageService.remove(STORAGE_KEY, toyId)
 }
 
-function save(toy) {
-    const method = toy._id ? 'put' : 'post'
-    return storageService[method](STORAGE_KEY, toy)
+function save(car) {
+    if (car._id) {
+        return httpService.put(BASE_URL, car)
+    } else {
+        return httpService.post(BASE_URL, car)
+    }
 }
+
+// function save(toy) {
+//     const method = toy._id ? 'put' : 'post'
+//     return storageService[method](STORAGE_KEY, toy)
+// }
 
 function getEmptyToy() {
     return {
