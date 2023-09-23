@@ -7,6 +7,7 @@ import { InStockPrecentPerLabel } from '../cmps/charts/InStockPrecentPerLabel.js
 import { utilService } from '../services/util.service.js';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend,   RadialLinearScale} from 'chart.js';
 import { Doughnut, PolarArea } from 'react-chartjs-2';
+import { SalesPerMonth } from '../cmps/charts/SalesPerMonth.jsx';
 ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
 
 
@@ -19,16 +20,31 @@ loadToys()
 },[])
 const averagePricePerLabel= chartService.getAveragePricePerLabel(toys)
 const inStockPrecentByLabel= chartService.getInStockPercentByLabel(toys)
+const getRandomIntInclusive = utilService.getRandomIntInclusive(0,1000)
+
 
     return (
         <section style={{maxWidth:'60vw', margin:'auto'}}>
             <div>
-                <h3>Store Analytics</h3>
+                <h3 className='text-center'>Store Analytics</h3>
 
             </div>
-          {/* <AvgPricePerLabel toys={toys} avgPricePerLabel={averagePricePerLabel}/> */}
+            <div className='flex'>
+                <div className="">
+                <AvgPricePerLabel toys={toys} avgPricePerLabel={averagePricePerLabel}/>
+                </div>
+                <div className="">
+                <InStockPrecentPerLabel toys={toys} inStockPercentByLabel={inStockPrecentByLabel}/>
+                </div>
+                <div className="">
+                <SalesPerMonth getRandomIntInclusive={getRandomIntInclusive}/>
+                </div>
+            </div>
+          
       
-          <InStockPrecentPerLabel toys={toys} inStockPercentByLabel={inStockPrecentByLabel}/>
+        
+         
+
           </section>
     )
 }
