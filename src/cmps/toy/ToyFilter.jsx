@@ -57,6 +57,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
                         </>
 
                     </select>
+                    
             </div>
             {/* <label >
                 Page:

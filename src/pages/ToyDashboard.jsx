@@ -26,14 +26,25 @@ const getRandomIntInclusive = utilService.getRandomIntInclusive(0,1000)
     return (
         <section style={{maxWidth:'60vw', margin:'auto'}}>
             <div>
-                <h3>Store Analytics</h3>
+                <h3 className='text-center'>Store Analytics</h3>
 
             </div>
-          <AvgPricePerLabel toys={toys} avgPricePerLabel={averagePricePerLabel}/>
-      
-          <InStockPrecentPerLabel toys={toys} inStockPercentByLabel={inStockPrecentByLabel}/>
-          <SalesPerMonth getRandomIntInclusive={getRandomIntInclusive}/>
+            <div className='flex'>
+                <div className="">
+                <AvgPricePerLabel toys={toys} avgPricePerLabel={averagePricePerLabel}/>
+                </div>
+                <div className="">
+                <InStockPrecentPerLabel toys={toys} inStockPercentByLabel={inStockPrecentByLabel}/>
+                </div>
+                <div className="">
+                <SalesPerMonth getRandomIntInclusive={getRandomIntInclusive}/>
+                </div>
+            </div>
           
+      
+        
+         
+
           </section>
     )
 }
