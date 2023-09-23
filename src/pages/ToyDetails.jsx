@@ -7,7 +7,6 @@ export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
     const navigate = useNavigate()
-    console.log(toyId)
     useEffect(() => {
         loadToy()
     }, [toyId])

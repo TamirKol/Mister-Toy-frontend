@@ -24,7 +24,7 @@ export function GoogleMap({branch}) {
         // Important! Always set the container height explicitly
         <div style={{ height: '40vh', width: '100%' }}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "Your Google API Key" }}
+                bootstrapURLKeys={{ key: "AIzaSyBMZ1V7mYaThIm95gpB0Bgzqg9Zs53qPq8" }}
                 center={coordinates}
                 defaultZoom={zoom}
                 onClick={handleClick}

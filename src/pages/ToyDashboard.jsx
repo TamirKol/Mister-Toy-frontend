@@ -36,10 +36,10 @@ const getRandomIntInclusive = utilService.getRandomIntInclusive(0,1000)
                 <div className="">
                 <InStockPrecentPerLabel toys={toys} inStockPercentByLabel={inStockPrecentByLabel}/>
                 </div>
+            </div>
                 <div className="">
                 <SalesPerMonth getRandomIntInclusive={getRandomIntInclusive}/>
                 </div>
-            </div>
           
       
         

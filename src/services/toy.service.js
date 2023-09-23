@@ -15,7 +15,7 @@ export const toyService = {
     getToyLabels,
     getDefaultFilter
 }
-const labels = ["Robot", "Doll", "Car","Educational", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set","Battery Powered", "Baby"];
+const labels = ["Robot", "Doll", "Car", "Educational", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set", "Battery Powered", "Baby"];
 
 const toysList = [
     {
@@ -25,28 +25,28 @@ const toysList = [
         "labels": ["Doll", "Battery Powered", "Baby"],
         "createdAt": 1631031801011,
         "inStock": 'true'
-      },
-      {
+    },
+    {
         "_id": "t102",
         "name": "Remote Control Car",
         "price": 89.99,
         "labels": ["Toy", "Battery Powered", "Kids"],
         "createdAt": 1632031801011,
         "inStock": 'true'
-      },
-      {
+    },
+    {
         "_id": "t103",
         "name": "Puzzle Set",
         "price": 19.99,
         "labels": ["Toy", "Educational", "Kids"],
         "createdAt": 1633031801011,
         "inStock": true
-      }
-    
+    }
+
 ]
 _createToys()
 
-function query(filterBy={}) {
+function query(filterBy = {}) {
     return httpService.get(BASE_URL, filterBy)
     // return storageService.query(STORAGE_KEY)
     //  .then(toys => {
@@ -70,7 +70,7 @@ function query(filterBy={}) {
     //     })
     //     }
     //     console.log(toyToDisplay)
-     
+
     //     return toyToDisplay
     // })
 }
@@ -117,26 +117,26 @@ function getEmptyToy() {
     return {
         _id: '',
         name: '',
-        price:'',
+        price: '',
         labels: [],
-        createdAt:'',
+        createdAt: '',
         inStock: true,
     }
 }
 
-function createToy(){
+function createToy() {
     return {
         _id: '',
         name: getRandomToyName(),
-        price:utilService.getRandomIntInclusive(10,1000),
-        labels: [],
-        createdAt:Date.now(),
+        price: utilService.getRandomIntInclusive(10, 1000),
+        labels: getRandomLabels(),
+        createdAt: Date.now(),
         inStock: true,
     }
 }
 
 function getDefaultFilter() {
-    return { txt: '', inStock:'' ,labels: ''}
+    return { txt: '', inStock: '', labels: '' }
 }
 
 function _createToys() {
@@ -147,21 +147,29 @@ function _createToys() {
     }
 }
 
-function getToyLabels(){
+function getToyLabels() {
     return labels
 }
 
-function getRandomToyName() {    
+function getRandomToyName() {
     // Generate a random number between 1 and 3 to determine the number of words in the toy name.
     const numberOfWords = Math.floor(Math.random() * 2) + 1;
-    
+
     // Randomly select words to create the toy name.
     const randomToyName = [];
     for (let i = 0; i < numberOfWords; i++) {
-      const randomIndex = Math.floor(Math.random() * labels.length);
-      randomToyName.push(labels[randomIndex]);
+        const randomIndex = Math.floor(Math.random() * labels.length);
+        randomToyName.push(labels[randomIndex]);
     }
-    
-    return randomToyName.join(" ");
-  }
-  
+    return randomToyName.join(" ")
+}
+
+function getRandomLabels() {
+    const numOfLabels = utilService.getRandomIntInclusive(1, 6)
+    const randomLabels = []
+    for (let i = 0; i < numOfLabels; i++) {
+        const randomIndex = Math.floor(Math.random() * labels.length)
+        randomLabels.push(labels[randomIndex])
+    }
+    return randomLabels
+}

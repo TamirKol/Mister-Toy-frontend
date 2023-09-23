@@ -1,7 +1,7 @@
 import { toyService } from "../../services/toy.service.js"
 import { utilService } from "../../services/util.service.js"
 import { useEffect, useRef, useState } from "react"
-
+import { MultiSelect } from "../common/MultiSelect.jsx"
 export function ToyFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -25,6 +25,8 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
+  
+
     const { txt, inStock, lables, pageIdx } = filterByToEdit
 
     return (
@@ -46,7 +48,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
                 <option value="true">in stock</option>
                 <option value="false">out of stock</option>
             </select>
-            <div className="filter-input-wrapper">
+            {/* <div className="filter-input-wrapper">
             <label htmlFor="toys">Labels:</label>
                     <select multiple value={lables} name="labels" id="labels" onChange={handleChange}>
                         <option value="">All</option>
@@ -58,7 +60,12 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
 
                     </select>
                     
-            </div>
+            </div> */}
+        <MultiSelect 
+           names={toyLabels}
+           handleFilterChange={handleChange}
+        />
+
             {/* <label >
                 Page:
                 <input type="number"
