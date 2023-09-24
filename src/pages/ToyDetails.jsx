@@ -10,7 +10,7 @@ export function ToyDetails() {
     useEffect(() => {
         loadToy()
     }, [toyId])
-   
+
     function loadToy() {
         toyService.getById(toyId)
             .then((toy) => setToy(toy))
@@ -24,11 +24,19 @@ export function ToyDetails() {
     if (!toy) return <div>Loading...</div>
     return (
         <section className="toy-details">
-            <h1>Toy: {toy.name}</h1>
-            <h5>Price: ${toy.price}</h5>
-            <p>in stock:{toy.inStock}</p>
-
-            <Link to="/toy">Back</Link>
+            <div>
+                <button><Link to="/toy">Back</Link></button>
+                <h1>Toy: {toy.name}</h1>
+                <h5>Price: ${toy.price}</h5>
+                <p>in stock:{toy.inStock}</p>
+                <div>
+                    <h4>labels:</h4>
+                    {toy.labels.map((label) => {
+                        return (<div className="toy-details-label">{label}</div>)
+                    })}
+                </div>
+            <div></div>
+            </div>
         </section>
     )
 }
