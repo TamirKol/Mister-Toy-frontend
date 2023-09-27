@@ -1,0 +1,18 @@
+.toy-filter {
+    background-color: $clr2bg;
+    padding: 1em;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.toy-filter input,select{
+    height: 56px;
+}
+
+#demo-multiple-chip{
+   background: white;
+}
+#demo-multiple-chip-label{
+   background: white;
+}

@@ -1,7 +1,8 @@
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { useState } from 'react'
 import { Provider } from 'react-redux'
-import './assets/style/main.css'
+// import './assets/style/main.css'
+import './assets/style/scss/main.scss'
 
 import { HomePage } from './pages/HomePage'
 import { store } from '../src/store/store.js'

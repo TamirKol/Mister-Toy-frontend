@@ -1,0 +1,15 @@
+.toy-details{
+    height: 70vh;
+}
+.toy-details-label{
+    width: max-content;
+    background-color:  $clr1bg;
+    border-radius: 10px;
+    padding: 0.3em;
+    margin: 5px;
+}
+
+.toy-details-label:hover{
+
+    background-color: $clr1bg-light;
+}

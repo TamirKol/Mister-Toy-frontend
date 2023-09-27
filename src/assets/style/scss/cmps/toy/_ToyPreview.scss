@@ -1,0 +1,20 @@
+.toy-preview {
+    text-align: center;
+    padding: 0.3em;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    border-radius: 10px;
+}
+.toy-preview h4{
+    text-transform: capitalize;
+    color: black;
+}
+
+.toy-preview img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+.toy-card{
+    background: 10px;
+}

@@ -14,7 +14,7 @@ export function AvgPricePerLabel({avgPricePerLabel}){
             },
             title:{
                 display:true,
-                text:'Average Prices Per Label'
+                text:'Average Prices Per Label($)'
             },
         },
     }

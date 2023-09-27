@@ -1,0 +1,25 @@
+//SETUP
+@import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+
+
+//BASICS 
+@import 'base/base';
+@import 'base/helpers';
+@import 'base/layout';
+@import 'base/forms';
+
+// COMPONENTS
+@import 'cmps/AppHeader';
+@import 'cmps/AppFooter';
+@import 'cmps/pages/About';
+@import 'cmps/pages/HompePage';
+@import 'cmps/pages/Dashboard';
+@import 'cmps/pages/ToyDetails';
+@import 'cmps/pages/ToyEdit';
+
+@import 'cmps/toy/ToyPreview';
+@import 'cmps/toy/ToyList';
+@import 'cmps/toy/ToyFilter';

@@ -13,7 +13,7 @@ export function SalesPerMonth({getRandomIntInclusive}) {
             },
             title: {
                 display: true,
-                text: 'Sales Per Month',
+                text: 'Sales Per Month ($)',
             },
         },
     };
