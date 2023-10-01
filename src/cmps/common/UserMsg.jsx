@@ -1,5 +1,6 @@
 import { eventBusService } from "../../services/event-bus.service.js"
-const { useState, useEffect, useRef } = React
+import{ useState, useEffect, useRef } from 'react'
+import {Fragment} from 'react'
 
 export function UserMsg() {
     const [msg, setMsg] = useState('')
@@ -22,7 +23,7 @@ export function UserMsg() {
         setMsg('')
     }
 
-    if (!msg) return <React.Fragment></React.Fragment>
+    if (!msg) return <Fragment></Fragment>
     return (
         <section className={`user-msg ${msg.type}`}>
             <button onClick={closeMsg}>x</button>

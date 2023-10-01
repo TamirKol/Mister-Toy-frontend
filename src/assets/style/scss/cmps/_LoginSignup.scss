@@ -1,0 +1,26 @@
+.auth{
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.auth-form{
+    display: flex;
+    flex-direction: column;
+   
+   
+ 
+    .form-group input{
+        padding: rem(6px);
+        border-radius: 5px;
+        margin-top: rem(10px);
+    }
+    .form-group label{
+        color : gray
+    }
+}
+.toggle-link{
+    color:$clr2bg;
+    cursor: pointer;
+    font-weight: bold;
+}

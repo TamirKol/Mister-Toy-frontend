@@ -1,4 +1,4 @@
-
+import {UserMsg}from '../common/UserMsg.jsx'
 
 
 export function AppFooter() {
@@ -9,7 +9,7 @@ export function AppFooter() {
             <p>
                 Coffeerights to all 
             </p>
-
+        <UserMsg/>
         </footer>
     )
 }

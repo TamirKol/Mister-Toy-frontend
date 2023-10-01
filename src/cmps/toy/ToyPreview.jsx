@@ -1,5 +1,6 @@
 import { utilService } from "../../services/util.service.js"
 export function ToyPreview({ toy }) {
+  
     return (
         <article className="toy-card">
             <img className="toy-preview-img "src={utilService.getAssetSrc("bear.jpeg")}/>

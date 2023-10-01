@@ -41,7 +41,7 @@ export function ToyDashboard() {
                         <th>Amount</th>
                         </tr>
                        {toys.map((toy)=>{
-                        return( <tr>
+                        return( <tr key={toy._id}>
                             <td>{toy.name}</td>
                             <td>{utilService.getRandomIntInclusive(1,500)}</td>
                         </tr>)

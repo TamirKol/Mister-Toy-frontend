@@ -18,7 +18,7 @@ import { About } from './pages/About.jsx'
 export default function App() {
 
     return (
-        <Provider store={store}>
+   
             <Router>
                 <section className="main-layout app">
                 <AppHeader />
@@ -35,6 +35,6 @@ export default function App() {
                 <AppFooter />
                 </section>
             </Router>
-        </Provider>
+   
     )
 }

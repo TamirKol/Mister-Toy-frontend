@@ -16,7 +16,7 @@ export const toyService = {
     getDefaultFilter
 }
 const labels = ["Robot", "Doll", "Car", "Educational", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set", "Battery Powered", "Baby"];
-
+const pics= ['car.jpg','doll.jpg','education.jpg','puzzle.jpg','robot.jpg','science.jpg']
 const toysList = [
     {
         "_id": "t101",
@@ -100,11 +100,11 @@ function remove(toyId) {
     // return storageService.remove(STORAGE_KEY, toyId)
 }
 
-function save(car) {
-    if (car._id) {
-        return httpService.put(BASE_URL, car)
+function save(toy) {
+    if (toy._id) {
+        return httpService.put(BASE_URL, toy)
     } else {
-        return httpService.post(BASE_URL, car)
+        return httpService.post(BASE_URL, toy)
     }
 }
 
@@ -132,6 +132,7 @@ function createToy() {
         labels: getRandomLabels(),
         createdAt: Date.now(),
         inStock: true,
+        pic:setPic()
     }
 }
 
@@ -172,4 +173,9 @@ function getRandomLabels() {
         randomLabels.push(labels[randomIndex])
     }
     return randomLabels
+}
+
+function setPic(){
+    const picName=utilService.getRandomIntInclusive(0,pics.length-1)
+    return pics[picName]
 }

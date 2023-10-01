@@ -1,7 +1,13 @@
 .home-page{
     text-align: center;
+
 }
-.home-page img{
-    max-height: 75vh;
-    width: 60%;
+.home-page-img{
+    max-height: 70vh;
+    width: 65%;
+    background: $gray1;
+
+}
+.auth{
+    margin: auto;
 }
