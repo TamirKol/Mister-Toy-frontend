@@ -13,10 +13,12 @@ export const toyService = {
     getEmptyToy,
     createToy,
     getToyLabels,
-    getDefaultFilter
+    getDefaultFilter,
+    addMsg,
+    removeMsg
 }
 const labels = ["Robot", "Doll", "Car", "Educational", "Puzzle", "Teddy Bear", "Train", "Action Figure", "Playset", "Board Game", "Stuffed Animal", "Building Blocks", "Toy Truck", "Remote Control", "Musical Instrument", "Art Kit", "Crayons", "Play-Doh", "Science Kit", "Magic Set", "Battery Powered", "Baby"];
-const pics= ['car.jpg','doll.jpg','education.jpg','puzzle.jpg','robot.jpg','science.jpg']
+const pics = ['car.jpg', 'doll.jpg', 'education.jpg', 'puzzle.jpg', 'robot.jpg', 'science.jpg']
 const toysList = [
     {
         "_id": "t101",
@@ -132,7 +134,7 @@ function createToy() {
         labels: getRandomLabels(),
         createdAt: Date.now(),
         inStock: true,
-        pic:setPic()
+        pic: setPic()
     }
 }
 
@@ -140,6 +142,16 @@ function getDefaultFilter() {
     return { txt: '', inStock: '', labels: '' }
 }
 
+async function addMsg(toyId, txt) {
+    // console.log('toyId',toyId , txt)
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
+}
+
+async function removeMsg(toyId, msgId) {
+    const removedId = await httpService.delete(`toy/${toyId}/msg/${msgId}`)
+    return removedId
+}
 function _createToys() {
     let toys = utilService.loadFromStorage(STORAGE_KEY)
     if (!toys || !toys.length) {
@@ -175,7 +187,7 @@ function getRandomLabels() {
     return randomLabels
 }
 
-function setPic(){
-    const picName=utilService.getRandomIntInclusive(0,pics.length-1)
+function setPic() {
+    const picName = utilService.getRandomIntInclusive(0, pics.length - 1)
     return pics[picName]
 }
