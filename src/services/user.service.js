@@ -27,7 +27,7 @@ async function login({ username, password }) {
     const user = { username, password }
     try{
         const loggedInUser=await httpService.post( LOGIN_URL, user )
-        _setLoggedinUser(loggedInUser)
+       if(loggedInUser)return _setLoggedinUser(loggedInUser)
     }
     catch(err){
         console.log(err)

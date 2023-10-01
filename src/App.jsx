@@ -16,7 +16,6 @@ import { ToyDashboard } from './pages/ToyDashboard.jsx'
 import { About } from './pages/About.jsx'
 
 export default function App() {
-
     return (
    
             <Router>

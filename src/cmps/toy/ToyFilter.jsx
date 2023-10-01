@@ -2,6 +2,7 @@ import { toyService } from "../../services/toy.service.js"
 import { utilService } from "../../services/util.service.js"
 import { useEffect, useRef, useState } from "react"
 import { MultiSelect } from "../common/MultiSelect.jsx"
+import { SortBy } from "../common/SortBy.jsx"
 export function ToyFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -27,7 +28,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
 
   
 
-    const { txt, inStock, lables, pageIdx } = filterByToEdit
+    const { txt, inStock, lables,sortBy, pageIdx } = filterByToEdit
 
     return (
         <section className="toy-filter">
@@ -66,6 +67,7 @@ export function ToyFilter({ filterBy, onSetFilterBy }) {
            handleFilterChange={handleChange}
         />
 
+        <SortBy sortBy={sortBy} handleChange={handleChange}/>
             {/* <label >
                 Page:
                 <input type="number"
