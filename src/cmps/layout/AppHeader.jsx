@@ -26,10 +26,10 @@ export function AppHeader() {
                     <NavLink className="header-link" to="/about">About</NavLink> |
                     <NavLink className="header-link" to="/toy">Toys</NavLink> |
                     <NavLink className="header-link" to="/dashboard">DashBoard</NavLink> |
-                    <div className=' flex justify-between'>
+                    <div className=' flex '>
                     <p className='profile'>😀</p><span>{user.fullname}</span>
-                    </div>
                     <button onClick={onLogout}>Logout</button>
+                    </div>
                 </div>}
             </nav>
         </header>

@@ -4,8 +4,6 @@ import { utilService } from "../services/util.service.js"
 export function HomePage() {
 
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
-
-    console.log(user);
     return (
         <section className="home-page flex  ">
 
